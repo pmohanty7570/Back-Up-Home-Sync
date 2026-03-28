@@ -1,3 +1,4 @@
+import Settings from './pages/Settings';
 import { Toaster } from "@/components/ui/toaster"
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClientInstance } from '@/lib/query-client'
@@ -36,7 +37,7 @@ const AuthenticatedApp = () => {
 
   return (
     <Routes>
-      <Route element={<Layout />}>
+      <Route path="/settings" element={<Settings />} />
         <Route path="/" element={<BillAuditor />} />
         <Route path="/life-sync" element={<LifeSync />} />
         <Route path="/event-planner" element={<LifeSync />} />
