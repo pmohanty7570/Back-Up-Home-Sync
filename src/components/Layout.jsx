@@ -5,7 +5,8 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { useTheme } from '../hooks/useTheme';
 import OnboardingModal from './shared/OnboardingModal';
-
+import { ThemeSwitcher } from './ThemeSwitcher';
+import { useTheme } from '@/lib/ThemeContext';
 const ADMIN_EMAILS = ['shreyassamal05@gmail.com', 'sarishdinesh@gmail.com', 'pmohanty.live@gmail.com', 'samarthravi30@gmail.com'];
 
 const baseTabs = [
@@ -49,17 +50,23 @@ function ThemedLayout() {
   return (
     <div className="min-h-screen bg-background font-body flex flex-col" style={{ fontSize }}>
       {needsOnboarding && <OnboardingModal onComplete={handleOnboardingComplete} />}
-      <header className="sticky top-0 z-40 glass border-b border-border/40">
-        <div className="max-w-2xl mx-auto px-4 py-3 flex items-center gap-3">
-          <div className="h-9 w-9 rounded-xl glow-sm flex items-center justify-center" style={{background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)))'}}>
-            <span className="text-white font-heading font-bold text-sm">M</span>
+        {/* Header with Theme Controls */}
+        <header className="sticky top-0 z-40 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 smooth-transition">
+          <div className="container flex h-16 items-center justify-between px-4">
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-lg bg-gradient-primary" />
+              <span className="font-bold text-lg">HomeSync AI</span>
+            </div>
+      
+            <nav className="hidden md:flex items-center gap-6">
+              <a href="/" className="text-sm hover:text-primary smooth-transition">Home</a>
+              <a href="/life-sync" className="text-sm hover:text-primary smooth-transition">LifeSync</a>
+              <a href="/profile" className="text-sm hover:text-primary smooth-transition">Settings</a>
+            </nav>
+      
+            <ThemeSwitcher />
           </div>
-          <div>
-            <h1 className="font-heading font-bold text-lg leading-tight text-gradient">MyHomeAI</h1>
-            <p className="text-[11px] text-muted-foreground leading-tight">Your smart home assistant</p>
-          </div>
-        </div>
-      </header>
+        </header>
 
       <main className="flex-1 max-w-2xl mx-auto w-full px-4 py-5 pb-24">
         <Outlet />
