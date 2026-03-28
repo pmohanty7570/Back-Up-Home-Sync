@@ -1,0 +1,144 @@
+{
+  "name": "RepairJob",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Name of the repair"
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": [
+        "easy",
+        "moderate",
+        "hard",
+        "professional_required"
+      ],
+      "description": "Difficulty level"
+    },
+    "damage_rating": {
+      "type": "number",
+      "description": "Damage severity rating from 1-10"
+    },
+    "safety_warning": {
+      "type": "string",
+      "description": "Safety warnings if applicable"
+    },
+    "description": {
+      "type": "string",
+      "description": "AI diagnosis of the damage"
+    },
+    "parts_list": {
+      "type": "array",
+      "description": "Required parts",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "estimated_cost": {
+            "type": "string"
+          },
+          "search_url": {
+            "type": "string"
+          },
+          "local_store_prices": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "store": {
+                  "type": "string"
+                },
+                "price": {
+                  "type": "string"
+                },
+                "distance_miles": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "nearby_professionals": {
+      "type": "array",
+      "description": "Nearby professionals who can fix this",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "specialty": {
+            "type": "string"
+          },
+          "estimated_cost": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "steps": {
+      "type": "array",
+      "description": "Step-by-step DIY instructions",
+      "items": {
+        "type": "object",
+        "properties": {
+          "step_number": {
+            "type": "number"
+          },
+          "instruction": {
+            "type": "string"
+          },
+          "tip": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "estimated_time": {
+      "type": "string",
+      "description": "Estimated repair time"
+    },
+    "estimated_cost": {
+      "type": "string",
+      "description": "Estimated total cost"
+    },
+    "file_url": {
+      "type": "string",
+      "description": "Uploaded damage photo URL"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "diagnosed",
+        "in_progress",
+        "completed"
+      ],
+      "default": "diagnosed"
+    }
+  },
+  "required": [
+    "title"
+  ],
+  "rls": {
+    "create": {
+      "created_by": "{{user.email}}"
+    },
+    "read": {
+      "created_by": "{{user.email}}"
+    },
+    "update": {
+      "created_by": "{{user.email}}"
+    },
+    "delete": {
+      "created_by": "{{user.email}}"
+    }
+  }
+}

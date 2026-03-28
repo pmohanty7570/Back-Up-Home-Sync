@@ -1,0 +1,101 @@
+{
+  "name": "UserProfile",
+  "type": "object",
+  "properties": {
+    "username": {
+      "type": "string",
+      "description": "Unique display username"
+    },
+    "phone": {
+      "type": "string",
+      "description": "User phone number"
+    },
+    "home_address": {
+      "type": "string",
+      "description": "Street address"
+    },
+    "city": {
+      "type": "string",
+      "description": "City"
+    },
+    "state": {
+      "type": "string",
+      "description": "State/Province"
+    },
+    "country": {
+      "type": "string",
+      "description": "Country"
+    },
+    "skip_address": {
+      "type": "boolean",
+      "description": "User opted out of address-based features"
+    },
+    "avatar_color": {
+      "type": "string",
+      "description": "User's chosen avatar color hex"
+    },
+    "theme": {
+      "type": "string",
+      "enum": [
+        "purple",
+        "blue",
+        "teal",
+        "orange",
+        "rose",
+        "lime"
+      ],
+      "description": "Accent color theme"
+    },
+    "dark_mode": {
+      "type": "boolean",
+      "description": "Dark mode enabled"
+    },
+    "font_size": {
+      "type": "string",
+      "enum": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "description": "Preferred font size"
+    },
+    "notifications_enabled": {
+      "type": "boolean",
+      "description": "Enable in-app notifications"
+    },
+    "compact_view": {
+      "type": "boolean",
+      "description": "Use compact card layout"
+    },
+    "household_staples": {
+      "type": "array",
+      "description": "List of items that should always be in the house",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": [],
+  "rls": {
+    "create": {
+      "created_by": "{{user.email}}"
+    },
+    "read": {
+      "created_by": "{{user.email}}"
+    },
+    "update": {
+      "created_by": "{{user.email}}"
+    },
+    "delete": {
+      "created_by": "{{user.email}}"
+    }
+  }
+}
